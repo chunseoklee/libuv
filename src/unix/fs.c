@@ -740,15 +740,12 @@ static int uv__fs_lstat(const char *path, uv_stat_t *buf) {
 
 
 static int uv__fs_fstat(int fd, uv_stat_t *buf) {
-#if defined(__NUTTX__)
-  return -1;
-#else
   struct stat pbuf;
   int ret;
   ret = fstat(fd, &pbuf);
   uv__to_stat(&pbuf, buf);
   return ret;
-#endif
+
 }
 
 
